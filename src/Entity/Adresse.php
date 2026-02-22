@@ -6,6 +6,7 @@ use App\Repository\AdresseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse
@@ -16,12 +17,15 @@ class Adresse
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['adresse:read'])]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['adresse:read'])]
     private ?string $cp = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['adresse:read'])]
     private ?string $ville = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]

@@ -6,6 +6,7 @@ use App\Repository\CommandeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -16,12 +17,15 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['commande:read'])]
     private ?\DateTime $date = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['commande:read'])]
     private ?string $statut = null;
 
     #[ORM\Column]
+    #[Groups(['commande:read'])]
     private ?float $frais_livraison = null;
 
     /**
