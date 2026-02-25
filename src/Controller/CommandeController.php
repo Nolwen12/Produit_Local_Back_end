@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\CommandeProduit;
 use App\Repository\CommandeProduitRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\ClickableInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class CommandeController extends AbstractController
@@ -22,5 +25,13 @@ final class CommandeController extends AbstractController
     {
         $commandeProduit = $commandeProduitRepository->findAll();
         return $this->json($commandeProduit, 200, [], ['groups' => 'commandeProduit:read']);
+    }
+
+    #[Route('/api/panier/ajouter', methods:['POST'])]
+    public function addPanier(Request $request)
+    {
+       $data = json_decode($request->getContent(), true);
+
+       return $this->json(['message' => 'Produit ajouté']);
     }
 }

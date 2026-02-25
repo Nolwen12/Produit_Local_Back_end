@@ -14,16 +14,18 @@ class Categorie
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['home:read', 'produit_categorie'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['categorie:read'])]
+    #[Groups(['categorie:read', 'home:read', 'produit_categorie'])]
     private ?string $libelle = null;
 
     /**
      * @var Collection<int, Produit>
      */
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
+    #[Groups(['home:read', 'produit_categorie'])]
     private Collection $produits;
 
     public function __construct()

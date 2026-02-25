@@ -14,22 +14,23 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['home:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['produit:read'])]
+    #[Groups(['produit:read', 'home:read'])]
     private ?string $nom = null;
 
     #[ORM\Column]
-    #[Groups(['produit:read'])]
+    #[Groups(['produit:read', 'home:read'])]
     private ?int $poids = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['produit:read'])]
+    #[Groups(['produit:read', 'home:read'])]
     private ?string $unite = null;
 
     #[ORM\Column]
-    #[Groups(['produit:read'])]
+    #[Groups(['produit:read', 'home:read'])]
     private ?float $prix = null;
 
     #[ORM\Column]

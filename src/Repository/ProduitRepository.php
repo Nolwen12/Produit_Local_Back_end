@@ -16,6 +16,25 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    // public function findByCategorie($categorieId)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->leftJoin('p.categorie', 'c')
+    //         ->where('c.id = :categoryId')
+    //         ->setParameter('categorie', $categorieId)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    public function  search($criteria) 
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.nom LIKE :keyword')
+            ->setParameter('keyword', $criteria)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Produit[] Returns an array of Produit objects
     //     */
