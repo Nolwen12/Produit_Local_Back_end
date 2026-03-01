@@ -15,12 +15,5 @@ final class UserController extends AbstractController
     {
         $user = $userRepository->findAll();
         return $this->json($user, 200, [], ['groups' => 'user:read']);
-    }
-
-    #[Route('api/adresse', name: 'api_adresse', methods:['GET'])]
-    public function indexAdresse(AdresseRepository $adresseRepository): JsonResponse
-    {
-        $adresse = $adresseRepository->findAll();
-        return $this->json($adresse, 200, [], ['groups' => 'adresse:read']);
-    }    
+    }   
 }

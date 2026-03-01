@@ -7,6 +7,7 @@ use App\Entity\Produit;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ProduitRepository;
 
@@ -46,10 +47,10 @@ final class ProduitController extends AbstractController
     }
 
     #[Route('api/recherche', name:'api_recherche', methods:['GET'])]
-    public function recherche(ProduitRepository $produitRepository): JsonResponse
+    public function recherche(Request $request, ProduitRepository $produitRepository): JsonResponse
     {
-        $criteria = $produitRepository->findAll();
-        $produits = $produitRepository->search($criteria);
+        $query = $request->query->get('q');
+        $produits = $produitRepository->search($query);
         return $this->json($produits, 200, [], ['groups' => 'produit:read']);
     }
 }

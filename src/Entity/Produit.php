@@ -14,32 +14,35 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['home:read'])]
+    #[Groups(['home:read', 'adminProduit:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['produit:read', 'home:read'])]
+    #[Groups(['produit:read', 'home:read', 'adminProduit:read', 'adminProduit:update'])]
     private ?string $nom = null;
 
     #[ORM\Column]
-    #[Groups(['produit:read', 'home:read'])]
+    #[Groups(['produit:read', 'home:read', 'adminProduit:read', 'adminProduit:update'])]
     private ?int $poids = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['produit:read', 'home:read'])]
+    #[Groups(['produit:read', 'home:read', 'adminProduit:read', 'adminProduit:update'])]
     private ?string $unite = null;
 
     #[ORM\Column]
-    #[Groups(['produit:read', 'home:read'])]
+    #[Groups(['produit:read', 'home:read', 'adminProduit:read', 'adminProduit:update'])]
     private ?float $prix = null;
 
     #[ORM\Column]
+    #[Groups(['adminProduit:read', 'adminProduit:update'])]
     private ?int $stock = null;
 
     #[ORM\Column]
+    #[Groups(['adminProduit:read', 'adminProduit:update'])]
     private ?\DateTime $date_debut_saison = null;
 
     #[ORM\Column]
+    #[Groups(['adminProduit:read', 'adminProduit:update'])]
     private ?\DateTime $date_fin_saison = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]

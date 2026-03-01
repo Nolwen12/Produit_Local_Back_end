@@ -21,11 +21,11 @@ class Adresse
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['adresse:read'])]
+    #[Groups(['adresse:read', 'adresse:update'])]
     private ?string $cp = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['adresse:read'])]
+    #[Groups(['adresse:read', 'adresse:update'])]
     private ?string $ville = null;
 
     #[ORM\ManyToOne(inversedBy: 'adresses')]
